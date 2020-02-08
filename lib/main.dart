@@ -25,7 +25,6 @@ class MyAppState extends State<MyApp>{
       home:
           Scaffold(
             appBar: AppBar(title: Text('Flutter Title')),
-            title: Text(texts[count]),
             body: Column(
               children: <Widget>[
                 Text(texts[count]),
