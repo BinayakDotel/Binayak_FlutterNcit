@@ -33,7 +33,11 @@ class MyAppState extends State<MyApp>{
                   color: Colors.blue,
                 ),
                 FloatingActionButton(
-                  child: Text('Press1'),
+                  child: Icon(
+                    Icons.access_alarm,
+                    color: Colors.white,
+
+                  ),
                   onPressed: buttonPressed,
                 ),
                 FloatingActionButton(
