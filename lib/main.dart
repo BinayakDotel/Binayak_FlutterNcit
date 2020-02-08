@@ -25,10 +25,15 @@ class MyAppState extends State<MyApp>{
       home:
           Scaffold(
             appBar: AppBar(title: Text('Flutter Title')),
+            title: Text(texts[count]),
             body: Column(
               children: <Widget>[
                 Text(texts[count]),
-                FloatingActionButton(
+                Icon(
+                  Icons.home,
+                  color: Colors.blue,
+                ),
+                FloatingActionButton(git
                   child: Text('Press1'),
                   onPressed: buttonPressed,
                 ),
