@@ -36,6 +36,10 @@ class MyAppState extends State<MyApp> {
               TextArea(
                 texts[count],
               ),
+              FloatingActionButton(
+                  child: Icon(
+                    Icons.access_alarm,
+                    color: Colors.white,
 
               FloatingActionButton(
                 child: Icon(
