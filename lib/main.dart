@@ -36,7 +36,6 @@ class MyAppState extends State<MyApp>{
                   child: Icon(
                     Icons.access_alarm,
                     color: Colors.white,
-
                   ),
                   onPressed: buttonPressed,
                 ),
