@@ -33,7 +33,7 @@ class MyAppState extends State<MyApp>{
                   Icons.home,
                   color: Colors.blue,
                 ),
-                FloatingActionButton(git
+                FloatingActionButton(
                   child: Text('Press1'),
                   onPressed: buttonPressed,
                 ),
