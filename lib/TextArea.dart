@@ -8,12 +8,11 @@ class TextArea extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
-        margin: EdgeInsets.all(20),
+        width: double.infinity,
         child: Text(
-      this.names,
-      style: TextStyle(fontSize: 28),
-      textAlign: TextAlign.center,
-    ));
+          this.names,
+          style: TextStyle(fontSize: 20),
+          textAlign: TextAlign.center,
+        ));
   }
 }
