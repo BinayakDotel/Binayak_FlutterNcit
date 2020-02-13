@@ -13,6 +13,7 @@ class TextArea extends StatelessWidget {
           this.names,
           style: TextStyle(fontSize: 20),
           textAlign: TextAlign.center,
-        ));
+        )
+    );
   }
 }

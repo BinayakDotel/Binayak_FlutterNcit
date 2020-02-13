@@ -1,6 +1,13 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterncit/FetchData.dart';
+import 'package:flutterncit/Answer.dart';
 import './TextArea.dart';
 import './InterfaceButton.dart';
+import 'FetchData.dart';
+import 'AddData.dart';
+import 'Result.dart';
+import 'Answer.dart';
 
 void main() => runApp(MyApp());
 
@@ -14,14 +21,16 @@ class MyApp extends StatefulWidget {
 class MyAppState extends State<MyApp> {
   var index = 0;
   var totalScore = 0;
-  final texts = [
+  var theme = Colors.green[300];
+  List data = [];
+  final List texts = [
     {
       'question': 'What is your favorite color?',
       'answer': [
         {'text': 'Red', 'score': 5},
         {'text': 'Green', 'score': 8},
         {'text': 'Orange', 'score': 4},
-        {'text': 'Blue', 'score':2}
+        {'text': 'Blue', 'score': 2}
       ]
     },
     {
@@ -51,6 +60,7 @@ class MyAppState extends State<MyApp> {
       ]
     },
   ];
+  final _names = ['Apple','Ball'];
   void buttonPressed(int score) {
     setState(() {
       totalScore += score;
@@ -74,13 +84,16 @@ class MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        primarySwatch: Colors.purple,
+      ),
       home: Scaffold(
           appBar: AppBar(
             title: Text('Flutter Ncit'),
-            backgroundColor: Colors.green[400],
+            backgroundColor: theme,
           ),
           body: index < texts.length
-              ? Column(
+              ? /*Column(
                   children: <Widget>[
                     TextArea(
                       texts[index]['question'],
@@ -91,11 +104,11 @@ class MyAppState extends State<MyApp> {
                             answer['text']))
                         .toList(),
                   ],
-                )
+                )*/
+          Answer(texts, buttonPressed, index)
               : Column(children: <Widget>[
                   FloatingActionButton(
-                    child:
-                    Icon(
+                    child: Icon(
                       Icons.home,
                     ),
                     onPressed: () {
@@ -105,15 +118,14 @@ class MyAppState extends State<MyApp> {
                       });
                     },
                     elevation: 6,
-                    backgroundColor: Colors.green[300],
+                    backgroundColor: theme,
                   ),
-                  Center(
-                    child: Text(result,
-                        style: TextStyle(fontSize: 24,color: Colors.black,
-                        ),
-                    ),
-              ),
-                ])),
+                  FetchData(),
+                  AddData(this._names),
+                  Result(this.result),
+                ],
+            )
+        ),
     );
   }
 }
