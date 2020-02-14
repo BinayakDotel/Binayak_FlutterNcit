@@ -19,52 +19,68 @@ class MyApp extends StatefulWidget {
 }
 
 class MyAppState extends State<MyApp> {
-  var index = 0;
+  var question_index = 1;
+  var answer_index = 0;
   var totalScore = 0;
   var theme = Colors.green[300];
   List data = [];
-  final List texts = [
-    {
-      'question': 'What is your favorite color?',
-      'answer': [
-        {'text': 'Red', 'score': 5},
-        {'text': 'Green', 'score': 8},
-        {'text': 'Orange', 'score': 4},
-        {'text': 'Blue', 'score': 2}
-      ]
-    },
-    {
-      'question': 'Which is your favorite pet animal?',
-      'answer': [
-        {'text': 'Dog', 'score': 9},
-        {'text': 'Cat', 'score': 7},
-        {'text': 'Rabbit', 'score': 10},
-      ]
-    },
-    {
-      'question': 'Which is your favorite sport?',
-      'answer': [
-        {'text': 'Cricket', 'score': 10},
-        {'text': 'Football', 'score': 7},
-        {'text': 'BasketBall', 'score': 6},
-        {'text': 'Table Tenis', 'score': 5},
-      ]
-    },
-    {
-      'question': 'Who according to you is the best?',
-      'answer': [
-        {'text': 'Facebook', 'score': 4},
-        {'text': 'Google', 'score': 10},
-        {'text': 'Apple', 'score': 7},
-        {'text': 'Microsoft', 'score': 6},
-      ]
-    },
+//  final List texts = [
+//    {
+//      'question': 'What is your favorite color?',
+//      'answer': [
+//        {'text': 'Red', 'score': 5},
+//        {'text': 'Green', 'score': 8},
+//        {'text': 'Orange', 'score': 4},
+//        {'text': 'Blue', 'score': 2}
+//      ]
+//    },
+//    {
+//      'question': 'Which is your favorite pet animal?',
+//      'answer': [
+//        {'text': 'Dog', 'score': 9},
+//        {'text': 'Cat', 'score': 7},
+//        {'text': 'Rabbit', 'score': 10},
+//      ]
+//    },
+//    {
+//      'question': 'Which is your favorite sport?',
+//      'answer': [
+//        {'text': 'Cricket', 'score': 10},
+//        {'text': 'Football', 'score': 7},
+//        {'text': 'BasketBall', 'score': 6},
+//        {'text': 'Table Tenis', 'score': 5},
+//      ]
+//    },
+//    {
+//      'question': 'Who according to you is the best?',
+//      'answer': [
+//        {'text': 'Facebook', 'score': 4},
+//        {'text': 'Google', 'score': 10},
+//        {'text': 'Apple', 'score': 7},
+//        {'text': 'Microsoft', 'score': 6},
+//      ]
+//    },
+//  ];
+  final List question = [
+    'What is your favorite color?',
+    'Which is your favorite pet animal?',
+    'Which is your favorite sport?',
+    'Who according to you is the best?',
   ];
+  final List answer = [
+    {'Red','Blue','Green'},
+    {'Dog','Cat','Rabbit'},
+    {'Cricket','Football'},
+    {'Google','Facebook','Microsoft','Apple'},
+  ];
+
+
   final _names = ['Apple','Ball'];
+
   void buttonPressed(int score) {
     setState(() {
       totalScore += score;
-      index += 1;
+      question_index += 1;
     });
   }
 
@@ -85,28 +101,43 @@ class MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        primarySwatch: Colors.purple,
       ),
       home: Scaffold(
           appBar: AppBar(
-            title: Text('Flutter Ncit'),
-            backgroundColor: theme,
+            title: Text('Binayak '),
+            backgroundColor: Colors.teal[300],
           ),
-          body: index < texts.length
-              ? /*Column(
-                  children: <Widget>[
-                    TextArea(
-                      texts[index]['question'],
+          body: question_index < answer.length
+              ? Column(
+              children: <Widget>[
+                //Image(image: AssetImage('images/cat.jpeg')),
+            new ListView.separated(
+              padding: const EdgeInsets.all(20),
+              itemCount: 3,
+              itemBuilder: (BuildContext context, int index) {
+                return Container(
+                  height: 60,
+                  child: RaisedButton(
+                    color: Colors.teal[200],
+                    child: Text(
+                        'Hello'
                     ),
-                    ...(texts[index]['answer'] as List<Map<String, Object>>)
-                        .map((answer) => InterfaceButton(
-                            () => buttonPressed(answer['score']),
-                            answer['text']))
-                        .toList(),
-                  ],
-                )*/
-          Answer(texts, buttonPressed, index)
-              : Column(children: <Widget>[
+                    elevation: 10,
+                    onPressed: (){
+                      setState(() {
+                        question_index+=1;
+                      });
+                    },
+                  ),
+                );
+              },
+              separatorBuilder:
+                  (BuildContext context, int index) => const Divider()
+             )
+            ],
+          )
+              :
+          Column(children: <Widget>[
                   FloatingActionButton(
                     child: Icon(
                       Icons.home,
@@ -114,7 +145,7 @@ class MyAppState extends State<MyApp> {
                     onPressed: () {
                       setState(() {
                         totalScore = 0;
-                        index = 0;
+                        question_index = 0;
                       });
                     },
                     elevation: 6,
